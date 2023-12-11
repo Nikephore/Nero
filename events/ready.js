@@ -4,7 +4,7 @@ module.exports = {
   name: Events.ClientReady,
   once: true,
   execute(client) {
-    client.user.setActivity("el gran incendio de Roma", { type: "WATCHING" });
+    client.user.setActivity({name: "| /padoru | /help", });
     console.log("Nero esta on fire");
 
     // Usar para borrar comandos
