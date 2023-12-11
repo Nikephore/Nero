@@ -25,7 +25,7 @@ console.log(wh)
 app.post(
   "/dblwebhook",
   wh.listener((vote) => {
-    console.log("listener")
+    console.log(vote.user)
     dbprofile.addVoteRoll(vote.user, vote.isWeekend);
 
     console.log(`${vote.user} has voted!`);
