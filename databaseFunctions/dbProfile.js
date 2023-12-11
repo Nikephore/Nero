@@ -249,7 +249,7 @@ module.exports.addVoteRoll = async (user, isWeekend) => {
     let number = isWeekend ? 2 : 1;
     console.log(number)
     await profileSchema.findOneAndUpdate(
-      { userId: user.id },
+      { userId: user },
       {
         $inc: { voteRolls: number },
       },
