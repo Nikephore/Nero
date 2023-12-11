@@ -243,8 +243,10 @@ module.exports.addRoll = async (user, number, guild) => {
   }
 };
 
-module.exports.addVoteRoll = async (user, number) => {
+module.exports.addVoteRoll = async (user, isWeekend) => {
   try {
+
+    let number = isWeekend ? 2 : 1;
     await profileSchema.findOneAndUpdate(
       { userId: user.id },
       {

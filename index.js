@@ -1,10 +1,11 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const Topgg = require("@top-gg/sdk");
+const { Webhook } = require("@top-gg/sdk");
 const express = require("express");
 const app = express();
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { config } = require("dotenv/config");
+const dbprofile = require("./databaseFunctions/dbProfile");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -15,20 +16,21 @@ const commandFolders = fs.readdirSync(foldersPath);
 
 const { token, topggtoken, auth } = require("./config.json");
 
-const webhook = new Topgg.Webhook(auth);
+console.log(auth)
+
+const wh = new Webhook(auth);
+
+console.log(wh)
 
 app.post(
   "/dblwebhook",
-  webhook.listener((vote) => {
-    rolls.addRoll(vote.user, vote.isWeekend);
+  wh.listener((vote) => {
+    console.log("listener")
+    dbprofile.addVoteRoll(vote.user, vote.isWeekend);
 
-    console.log(`${vote.user} ha votado!`);
+    console.log(`${vote.user} has voted!`);
   })
 );
-
-app.get("/dblwebhook", function (req, res) {
-  res.send("webhook");
-});
 
 const { AutoPoster } = require("topgg-autoposter");
 
@@ -36,12 +38,7 @@ AutoPoster(topggtoken, client).on("posted", () => {
   console.log("Posted stats to Top.gg!");
 });
 
-app.get("/", function (req, res) {
-  res.send("pichula");
-});
-let port = process.env.PORT || 3000;
-
-app.listen(port);
+app.listen(80);
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
