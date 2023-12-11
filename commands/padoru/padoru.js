@@ -191,7 +191,7 @@ module.exports = {
               value: math.lifeConvertEmoji(life),
             },
             {
-                name: ":warning: Padoru Requests open on the Support Server :warning:",
+                name: ":warning:Padoru Requests open on Support Server:warning:",
                 value: "We are including new Padorus, come and request your favorites",
             }
           );
