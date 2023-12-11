@@ -38,7 +38,7 @@ AutoPoster(topggtoken, client).on("posted", () => {
   console.log("Posted stats to Top.gg!");
 });
 
-app.listen(80);
+app.listen(3000);
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
