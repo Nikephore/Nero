@@ -59,12 +59,6 @@ const eventFiles = fs
   .readdirSync(eventsPath)
   .filter((file) => file.endsWith(".js"));
 
-const guilds = client.guilds.cache;
-// Itera sobre la lista de guilds e imprime información
-guilds.forEach((guild) => {
-  console.log(`Bot is in guild: ${guild.name} (ID: ${guild.id})`);
-});
-
 for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file);
   const event = require(filePath);

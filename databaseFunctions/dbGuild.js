@@ -22,7 +22,6 @@ module.exports.guildPopulate = async (guild) => {
   const padorus = await dbpadoru.getAll("id");
 
   for (const p of padorus) {
-    console.log(p.id);
     await guildSchema.updateOne(
       { guildId: guild.id },
       {
