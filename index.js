@@ -21,7 +21,7 @@ const wh = new Webhook(auth);
 app.post(
   "/dblwebhook",
   wh.listener((vote) => {
-    console.log(vote.user)
+    console.log(vote.user);
     dbprofile.addVoteRoll(vote.user, vote.isWeekend);
 
     console.log(`${vote.user} has voted!`);
@@ -58,6 +58,12 @@ const eventsPath = path.join(__dirname, "events");
 const eventFiles = fs
   .readdirSync(eventsPath)
   .filter((file) => file.endsWith(".js"));
+
+const guilds = client.guilds.cache;
+// Itera sobre la lista de guilds e imprime información
+guilds.forEach((guild) => {
+  console.log(`Bot is in guild: ${guild.name} (ID: ${guild.id})`);
+});
 
 for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file);
