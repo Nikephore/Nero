@@ -135,3 +135,5 @@ package-lock.json
 config.json
 .vscode
 commands/admin
+canary.js
+canaryDeployCommands.js

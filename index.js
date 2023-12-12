@@ -16,11 +16,7 @@ const commandFolders = fs.readdirSync(foldersPath);
 
 const { token, topggtoken, auth } = require("./config.json");
 
-console.log(auth)
-
 const wh = new Webhook(auth);
-
-console.log(wh)
 
 app.post(
   "/dblwebhook",

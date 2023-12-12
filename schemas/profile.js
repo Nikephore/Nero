@@ -97,7 +97,7 @@ const profileSchema = mongoose.Schema({
           },
           padorurolls: {
             type: Number,
-            default: 1000,
+            default: 1,
           },
         },
         padorupedia: {

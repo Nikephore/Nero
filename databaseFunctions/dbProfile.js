@@ -183,21 +183,26 @@ module.exports.resetDaily = async () => {
 module.exports.getProfile = async (user, guild) => {
   try {
     let data = await profileSchema.findOne({ userId: user.id });
-    console.log(typeof guild.id);
+
     if (!data) {
+      // If the document doesn't exist, create a new one
       data = await profileSchema.create({
         userId: user.id,
         username: user.username,
+        guilds: [{ id: guild.id }],
       });
-    }
 
-    if (!data.guilds.some((g) => g.id === guild.id)) {
-      console.log("no existe server");
-      // Si el guild no existe, agrégalo
-      data = await profileSchema.updateOne(
+      console.log("After creating new document", data);
+    } else if (!data.guilds.some((g) => g.id === guild.id)) {
+      console.log("Guild doesn't exist");
+
+      // If the guild doesn't exist, push it to the guilds array
+      data = await profileSchema.findOneAndUpdate(
         { userId: user.id },
-        { $push: { guilds: { id: guild.id } } }
+        { $push: { guilds: { id: guild.id } } },
+        { new: true } // Return the modified document
       );
+
     }
 
     return data;
@@ -205,6 +210,7 @@ module.exports.getProfile = async (user, guild) => {
     console.log(err);
   }
 };
+
 
 module.exports.setFavPadoru = async (user, tn, guild) => {
   try {
@@ -245,10 +251,9 @@ module.exports.addRoll = async (user, number, guild) => {
 
 module.exports.addVoteRoll = async (user, isWeekend) => {
   try {
-
     let number = isWeekend ? 2 : 1;
-    console.log(number)
-    console.log(user)
+    console.log(number);
+    console.log(user);
     await profileSchema.findOneAndUpdate(
       { userId: user },
       {
@@ -333,6 +338,16 @@ module.exports.skillLvUp = async (user, skill, guild) => {
         },
       });
     }
+
+    return;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports.delete = async (user) => {
+  try {
+    await profileSchema.deleteOne({ userId: user.id });
 
     return;
   } catch (err) {

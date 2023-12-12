@@ -112,21 +112,12 @@ module.exports.getLength = async () => {
   }
 };
 
-module.exports.setactive = async (pid, bool) => {
+module.exports.setActive = async (id, active) => {
   try {
     await padoruSchema.findOneAndUpdate(
-      {
-        id: pid,
-      },
-      {
-        $set: {
-          active: bool,
-        },
-      },
-      {
-        upsert: true,
-        new: true,
-      }
+      { id },
+      { $set: { active }, },
+      { upsert: true, new: true, }
     );
   } catch (err) {
     console.log(err);
