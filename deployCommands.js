@@ -22,9 +22,7 @@ for (const folder of commandFolders) {
 
     if ("data" in command && "execute" in command) {
       // Verifica si el comando pertenece a la carpeta "admin"
-      if (folder.toLowerCase() === "admin") {
-        adminCommands.push(command.data.toJSON());
-      } else {
+      if (folder.toLowerCase() !== "admin") {
         commands.push(command.data.toJSON());
       }
     } else {
@@ -35,7 +33,7 @@ for (const folder of commandFolders) {
   }
 }
 
-const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN_NERO);
+const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
   try {
@@ -53,21 +51,6 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN_NERO
       `Successfully reloaded ${globalCommandsData.length} global application (/) commands.`
     );
 
-    // Verifica si hay comandos de administración para desplegar en el servidor específico
-    if (adminCommands.length > 0) {
-      console.log(
-        `Started refreshing ${adminCommands.length} application (/) commands in guild ${guildId}.`
-      );
-
-      const guildCommandsData = await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
-        { body: adminCommands }
-      );
-
-      console.log(
-        `Successfully reloaded ${guildCommandsData.length} application (/) commands in guild ${guildId}.`
-      );
-    }
   } catch (error) {
     console.error(error);
   }

@@ -3,7 +3,7 @@ const dbpadoru = require("./dbPadoru");
 
 module.exports.getGuild = async (guild) => {
   try {
-    let data = await guildSchema.findOne({ guildId: guild.id });
+    let data = await guildSchema.findOne({ guildId: guild.id }).lean();
 
     if (!data) {
       data = await guildSchema.create({
