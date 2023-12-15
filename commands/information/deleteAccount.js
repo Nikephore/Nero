@@ -9,13 +9,13 @@ const {
 } = require("discord.js");
 
 module.exports = {
+  category: "information",
   data: new SlashCommandBuilder()
     .setName("deleteaccount")
     .setDescription("Delete all your information from Nero"),
 
   async execute(interaction) {
     try {
-
       const confirm = new ButtonBuilder()
         .setCustomId("delete")
         .setLabel("DELETE")
@@ -28,11 +28,11 @@ module.exports = {
 
       const row = new ActionRowBuilder().addComponents(cancel, confirm);
 
-
       await interaction.deferReply({ ephemeral: true });
 
       const msg = await interaction.editReply({
-        content: ':warning: **Are you sure you want to delete all your data related to this bot?** :warning:',
+        content:
+          ":warning: **Are you sure you want to delete all your data related to this bot?** :warning:",
         ephemeral: true,
         components: [row],
         fetchReply: true,
@@ -54,8 +54,7 @@ module.exports = {
         await i.deferUpdate();
 
         if (i.customId === "delete") {
-          await dbprofile.delete(
-            i.user);
+          await dbprofile.delete(i.user);
           return i.editReply({
             content: "Profile deleted.",
             ephemeral: true,

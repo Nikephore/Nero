@@ -4,6 +4,7 @@ const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const filter = require("../../functions/filter");
 
 module.exports = {
+  category: "information",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("profile")
@@ -16,7 +17,7 @@ module.exports = {
       const user = interaction.options.getUser("user") ?? interaction.user;
 
       let profile = await dbprofile.getProfile(user, interaction.guild);
-      console.log("Antes de find", profile)
+      console.log("Antes de find", profile);
       voteRolls = profile.voteRolls;
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const plength = await dbpadoru.getLength();

@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require("discord.js");
 const math = require("../../functions/math");
 
 module.exports = {
+  category: "economy",
   cooldown: 72000, // 20 horas
   data: new SlashCommandBuilder()
     .setName("dailycoins")

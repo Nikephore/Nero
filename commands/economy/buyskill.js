@@ -11,6 +11,7 @@ const filter = require("../../functions/filter");
 const math = require("../../functions/math");
 
 module.exports = {
+  category: "economy",
   data: new SlashCommandBuilder()
     .setName("buy")
     .setDescription("Buy upgrades for your skills")

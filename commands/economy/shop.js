@@ -4,9 +4,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const filter = require("../../functions/filter");
 
 module.exports = {
+  category: "economy",
   data: new SlashCommandBuilder()
     .setName("shop")
-    .setDescription("Shop to buy upgrades to your profile"),
+    .setDescription("Shop to buy upgrades to your profile using Coins"),
 
   async execute(interaction) {
     try {

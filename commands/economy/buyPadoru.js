@@ -5,6 +5,7 @@ const math = require("../../functions/math");
 const guild = require("../../schemas/guild");
 
 module.exports = {
+  category: "economy",
   data: new SlashCommandBuilder()
     .setName("buypadoru")
     .setDescription(`Buy a Padoru that you don't have`)

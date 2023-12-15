@@ -10,6 +10,7 @@ const pagination = require("../../functions/pagination");
 const filter = require("../../functions/filter");
 
 module.exports = {
+  category: "padoru",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("padoruinfo")

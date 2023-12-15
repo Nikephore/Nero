@@ -7,6 +7,7 @@ const Duration = require("humanize-duration");
 const pagination = require("../../functions/pagination");
 
 module.exports = {
+  category: "padoru",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("voterolls")

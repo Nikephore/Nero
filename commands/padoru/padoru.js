@@ -8,6 +8,7 @@ const pagination = require("../../functions/pagination");
 const padorugif = require("../../functions/padorugif");
 
 module.exports = {
+  category: "padoru",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("padoru")
@@ -191,8 +192,9 @@ module.exports = {
               value: math.lifeConvertEmoji(life),
             },
             {
-                name: ":warning:Padoru Requests open on Support Server:warning:",
-                value: "We are including new Padorus, come and request your favorites",
+              name: ":warning:Padoru Requests open on Support Server:warning:",
+              value:
+                "We are including new Padorus, come and request your favorites",
             }
           );
 

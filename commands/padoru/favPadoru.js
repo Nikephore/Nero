@@ -3,10 +3,11 @@ const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
+  category: "padoru",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("favpadoru")
-    .setDescription("Choose your favorite Padoru")
+    .setDescription("Choose your favorite Padoru, which will be displayed in your profile")
     .addNumberOption((option) =>
       option
         .setName("padoruid")

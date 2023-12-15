@@ -191,8 +191,6 @@ module.exports.getProfile = async (user, guild) => {
         username: user.username,
         guilds: [{ id: guild.id }],
       });
-
-      console.log("After creating new document", data);
     } else if (!data.guilds.some((g) => g.id === guild.id)) {
       console.log("Guild doesn't exist");
 

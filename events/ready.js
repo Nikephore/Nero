@@ -8,17 +8,18 @@ module.exports = {
     client.user.setActivity({ name: "| /padoru | /help" });
     console.log("Nero esta on fire");
 
-    const guilds = client.guilds.cache;
+    client.application.commands.set(client.commands.map(v => v.data)).then(cmds => {
+        cmds.toJSON().forEach(cmd => {
+            const rawCommand = client.commands.get(cmd.name);
 
-    // Itera sobre la lista de guilds e imprime información
-    guilds.forEach(async (guild) => {
-      console.log(`Bot is in guild: ${guild.name} (ID: ${guild.id})`);
-      await dbguild.getGuild(guild);
+            rawCommand.id = cmd.id;
+
+            client.commands.set(cmd.name, rawCommand);
+        })
     });
 
     // Usar para borrar comandos
     //client.application.commands.set([]);
-    console.log(client.application.commands);
 
     console.log("Conectando a mongo...");
     const mongo = require("../mongo");

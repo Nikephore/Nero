@@ -2,6 +2,7 @@ const dbprofile = require("../../databaseFunctions/dbProfile");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
+  category: "economy",
   data: new SlashCommandBuilder()
     .setName("ticketinfo")
     .setDescription("Display Ticket information"),

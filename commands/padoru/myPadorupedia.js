@@ -7,10 +7,11 @@ const pagination = require("../../functions/pagination");
 const filter = require("../../functions/filter");
 
 module.exports = {
+  category: "padoru",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("mypadorupedia")
-    .setDescription("List of all your Padorus")
+    .setDescription("List of all your Padorus in a list format")
     .addStringOption((option) =>
       option
         .setName("sort")

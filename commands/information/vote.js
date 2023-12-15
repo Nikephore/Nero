@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("discord.js");
 const dbprofile = require("../../databaseFunctions/dbProfile");
 
 module.exports = {
+  category: "information",
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("vote")
@@ -15,7 +16,7 @@ module.exports = {
       const rolls = user.voteRolls;
 
       await interaction.reply(
-        `**${rolls} rolls available**\n\nVote for Nero every 12 hours at the link below to obtain more rolls. You can use the available rolls with the /voterolls command.\nhttps://top.gg/bot/442790194555650048/vote`
+        `**${rolls} rolls available**\n\nRight now The vote function does not work as espected and it will not give the voteRolls. We are working on it\n\nVote for Nero every 12 hours at the link below to obtain more rolls. You can use the available rolls with the /voterolls command.\nhttps://top.gg/bot/442790194555650048/vote`
       );
     } catch (err) {
       console.log("Error ocurred: ", err.message);

@@ -4,6 +4,7 @@ const { SlashCommandBuilder, time } = require("discord.js");
 const math = require("../../functions/math");
 
 module.exports = {
+    category: 'economy',
   data: new SlashCommandBuilder()
     .setName("ascendpadoru")
     .setDescription(
