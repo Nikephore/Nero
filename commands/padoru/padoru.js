@@ -18,7 +18,7 @@ module.exports = {
     ),
   async execute(interaction) {
     try {
-      console.time("Claiming Padoru");
+      // console.time("Claiming Padoru");
       const rarity = { 1: 0.39, 2: 0.3, 3: 0.2, 4: 0.1, 5: 0.01 };
       //const rarity = { 1: 1, 2: 0, 3: 0, 4: 0, 5: 0 };
       const gachararity = { 2: 0.5, 3: 0.32, 4: 0.15, 5: 0.03 };
@@ -37,7 +37,7 @@ module.exports = {
       await interaction.deferReply();
 
       let myCoins = 0;
-      console.time("finding guild");
+      // console.time("finding guild");
       let guild = await dbguild.getGuild(interaction.guild);
       if (guild === undefined) {
         await interaction.editReply({
@@ -46,16 +46,16 @@ module.exports = {
         });
         return;
       }
-      console.timeEnd("finding guild");
-      console.time("getting profile");
+      // console.timeEnd("finding guild");
+      // console.time("getting profile");
       let profile = await dbprofile.getProfile(
         interaction.user,
         interaction.guild
       );
-      console.timeEnd("getting profile");
-      console.time("getting guild profile");
+      // console.timeEnd("getting profile");
+      // console.time("getting guild profile");
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
-      console.timeEnd("getting guild profile");
+      // console.timeEnd("getting guild profile");
       const rolls = interaction.options.getInteger("numberrolls") ?? 1;
 
       let remaining = Duration(math.normalizeDate(2, 2) * 60000, {
@@ -93,7 +93,7 @@ module.exports = {
         return;
       }
 
-      console.time("Rarity Arrays");
+      // console.time("Rarity Arrays");
       const raritiesArray = [];
       const luckyArray = [];
       let maxrar = 1;
@@ -109,12 +109,12 @@ module.exports = {
           luckyArray.push(rarityPlus);
         }
       }
-      console.timeEnd("Rarity Arrays");
+      // console.timeEnd("Rarity Arrays");
 
-      console.time("Pick Padorus");
+      // console.time("Pick Padorus");
       const selectedPadorus = await dbpadoru.pickPadorus(raritiesArray);
       const luckyPadorus = await dbpadoru.pickPadorus(luckyArray);
-      console.timeEnd("Pick Padorus");
+      // console.timeEnd("Pick Padorus");
 
       dbprofile.addRoll(interaction.user, -rolls, interaction.guild);
 
@@ -135,7 +135,7 @@ module.exports = {
       }
 
       async function addPadoru(padoru, lucky) {
-        console.time("Add Padoru Function");
+        // console.time("Add Padoru Function");
         let isNew = "";
         // Comprobamos si el usuario tiene el padoru o no
         if (
@@ -218,7 +218,7 @@ module.exports = {
           );
 
         embedsArray.push(embed);
-        console.timeEnd("Add Padoru Function");
+        // console.timeEnd("Add Padoru Function");
       }
 
       await dbprofile.addCoins(interaction.user, myCoins, interaction.guild);
@@ -285,7 +285,7 @@ module.exports = {
         embedsArray.push(embed);
       }
 
-      console.timeEnd("Claiming Padoru");
+      // // console.timeEnd("Claiming Padoru");
       await padorugif.padorugif(interaction, maxrar);
       pagination.buttonPages(interaction, embedsArray);
     } catch (err) {
