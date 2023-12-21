@@ -16,7 +16,7 @@ module.exports = {
     .addIntegerOption((option) =>
       option.setName("numberrolls").setDescription("Number of Padorus to roll")
     ),
-  async execute(interaction) {
+  async execute(interaction, client) {
     try {
       // console.time("Claiming Padoru");
       const rarity = { 1: 0.39, 2: 0.3, 3: 0.2, 4: 0.1, 5: 0.01 };
@@ -32,6 +32,7 @@ module.exports = {
         "f2e01d",
         "ffffff",
       ];
+      const { client } = interaction;
 
       // First of all we defer reply
       await interaction.deferReply();
@@ -145,7 +146,7 @@ module.exports = {
           isNew = "[ 🇳 🇪 🇼 ]";
           newPadorusArray.push(padoru.id);
         } else {
-          isNew = `${coins[padoru.rarity]} PC`;
+          isNew = `${coins[padoru.rarity]} 🪙`;
           myCoins += coins[padoru.rarity];
         }
 
@@ -187,7 +188,7 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-          .setAuthor({ name: `#${padoru.id} ${padoru.title}    ${isNew}` })
+          .setAuthor({ name: `#${padoru.id} ${padoru.title}    ${isNew}`, iconURL: client.user.displayAvatarURL() }, )
           .setTitle(title)
           .setDescription(padoru.description)
           .setImage(padoru.image)
