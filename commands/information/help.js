@@ -25,7 +25,7 @@ module.exports = {
             .setLabel("Economy")
             .setDescription("Obtain or use your PadoruCoins and Tickets.")
             .setValue("economy")
-            .setEmoji("🪙"),
+            .setEmoji("1187212082735747143"),
           new StringSelectMenuOptionBuilder()
             .setLabel("Fun")
             .setDescription("Memes and fun commands.")

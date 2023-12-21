@@ -278,7 +278,7 @@ module.exports = {
             },
             {
               name: "Coins",
-              value: `+${myCoins} <:padorucoin:1187209585380048936>`,
+              value: `+${myCoins} <:padorucoin2:1187212082735747143>`,
             }
           );
 

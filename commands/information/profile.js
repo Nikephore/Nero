@@ -69,7 +69,7 @@ module.exports = {
             name: "---**RESOURCES**---",
             value: `**PadoruCoins** ${filter.nFormatter(
               profile.resources.padoruCoins
-            )} <:padorucoin:1187209585380048936>\n**Tickets** · ${profile.resources.tickets} 🎟️`,
+            )} <:padorucoin2:1187212082735747143>\n**Tickets** · ${profile.resources.tickets} 🎟️`,
           },
           {
             name: "---**CONSUMABLES**---",
