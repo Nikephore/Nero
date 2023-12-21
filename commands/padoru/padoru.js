@@ -145,7 +145,7 @@ module.exports = {
           isNew = "[ 🇳 🇪 🇼 ]";
           newPadorusArray.push(padoru.id);
         } else {
-          isNew = `${coins[padoru.rarity]} <:padorucoin2:1187212082735747143>`;
+          isNew = `${coins[padoru.rarity]} PC`;
           myCoins += coins[padoru.rarity];
         }
 
