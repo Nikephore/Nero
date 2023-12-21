@@ -36,7 +36,7 @@ module.exports = {
           },
           {
             name: "Ascend Padorus\t/ascendpadoru",
-            value: `First Ascension = 10 🎟️\nSecond Ascension = 25 🎟️ +10.000 :coin: \nThird Ascension = 50 🎟️ + 25.000 :coin:`,
+            value: `First Ascension = 10 🎟️\nSecond Ascension = 25 🎟️ +10.000 <:padorucoin:1187209585380048936> \nThird Ascension = 50 🎟️ + 25.000 <:padorucoin:1187209585380048936>`,
           },
           {
             name: `${interaction.user.username} has **${tickets}** 🎟️`,

@@ -86,7 +86,7 @@ module.exports = {
         ticketsToAscend > profile.resources.tickets
       ) {
         await interaction.editReply({
-          content: `You need **${coinsToAscend}** :coin: and **${ticketsToAscend}** 🎟️  to ascend **${padoru.title}**`,
+          content: `You need **${coinsToAscend}** <:padorucoin:1187209585380048936> and **${ticketsToAscend}** 🎟️  to ascend **${padoru.title}**`,
           ephemeral: true,
         });
         return;

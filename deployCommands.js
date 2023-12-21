@@ -47,6 +47,12 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
       { body: commands }
     );
 
+    console.log(commands);
+
+    // await rest.put(Routes.applicationCommands(clientId), { body: [] })
+	// .then(() => console.log('Successfully deleted all application commands.'))
+	// .catch(console.error);
+
     console.log(
       `Successfully reloaded ${globalCommandsData.length} global application (/) commands.`
     );

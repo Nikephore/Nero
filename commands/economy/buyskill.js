@@ -71,7 +71,7 @@ module.exports = {
         await interaction.editReply({
           content: `You need ${filter.nFormatter(
             skills[buyOption].price[mySkills[buyOption].level] - coins
-          )} :coin: more to upgrade ${skills[buyOption].name} `,
+          )} <:padorucoin:1187209585380048936> more to upgrade ${skills[buyOption].name} `,
           ephemeral: true,
         });
         return;
@@ -113,7 +113,7 @@ module.exports = {
             upgradeTexts[skills[buyOption].name]
           }\nPrice | ${filter.nFormatter(
           skills[buyOption].price[mySkills[buyOption].level]
-        )} :coin:`,
+        )} <:padorucoin:1187209585380048936>`,
         ephemeral: true,
         components: [row],
         fetchReply: true,

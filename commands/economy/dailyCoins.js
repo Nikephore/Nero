@@ -20,7 +20,7 @@ module.exports = {
       await dbprofile.dailyCoins(interaction.user, coins, interaction.guild);
 
       await interaction.reply(
-        `${interaction.user} obtained ${coins} :coin: and 1 🎟️`
+        `${interaction.user} obtained ${coins} <:padorucoin:1187209585380048936> and 1 🎟️`
       );
     } catch (err) {
       console.log("Error ocurred: ", err.message);

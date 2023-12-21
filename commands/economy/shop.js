@@ -28,7 +28,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setAuthor({ name: `🏛️ Skills Shop` })
-        .setTitle(`Your Coins: ${filter.nFormatter(coins)} :coin:`)
+        .setTitle(`Your Coins: ${filter.nFormatter(coins)} <:padorucoin:1187209585380048936>`)
         .setColor("2cbf2e")
         .setThumbnail(
           "https://cdn.discordapp.com/attachments/901798915425321000/901799488111403018/PADORUGOLD.png"
@@ -44,17 +44,17 @@ module.exports = {
                               filter.nFormatter(
                                 skills.prolls.price[mySkills.prolls.level]
                               ) +
-                              " :coin:"
+                              " <:padorucoin:1187209585380048936>"
                             : "Max level reached!"
                         }
-                        \n- **Lucky Strike LV · ${mySkills.problucky.level}**
+                        \n- **Lucky Roll LV · ${mySkills.problucky.level}**
                         \n${
                           mySkills.problucky.level !== skills.problucky.maxlv
                             ? "Next level: " +
                               filter.nFormatter(
                                 skills.problucky.price[mySkills.problucky.level]
                               ) +
-                              " :coin:"
+                              " <:padorucoin:1187209585380048936>"
                             : "Max level reached!"
                         }
                         \n- **Daily Coins LV · ${mySkills.dailycoins.level}**
@@ -66,7 +66,7 @@ module.exports = {
                                   mySkills.dailycoins.level
                                 ]
                               ) +
-                              " :coin:"
+                              " <:padorucoin:1187209585380048936>"
                             : "Max level reached!"
                         }
                         \n- **Attack LV · ${mySkills.attack.level}**
@@ -76,7 +76,7 @@ module.exports = {
                               filter.nFormatter(
                                 skills.attack.price[mySkills.attack.level]
                               ) +
-                              " :coin:"
+                              " <:padorucoin:1187209585380048936>"
                             : "Max level reached!"
                         }`,
           },
@@ -86,7 +86,7 @@ module.exports = {
                 ? "Unlocked"
                 : "Locked · " +
                   filter.nFormatter(skills.gachamaster.price) +
-                  ":coin: to unlock"
+                  "<:padorucoin:1187209585380048936> to unlock"
             }`,
             value: "\u200B",
           }
