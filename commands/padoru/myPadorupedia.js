@@ -1,6 +1,5 @@
 const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const dbprofile = require("../../databaseFunctions/dbProfile");
-const dbseries = require("../../databaseFunctions/dbSeries");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const math = require("../../functions/math");
 const pagination = require("../../functions/pagination");
@@ -101,16 +100,13 @@ module.exports = {
           p.title +
           "\t" +
           math.rarityConvertAscii(p.rarity, p.upgrade) +
-          (p.active ? "" : ":no_entry_sign:") +
-          (p.banner ? ":bangbang:" : "")
+          (p.active ? "" : ":no_entry_sign:")
       );
-
+      // (p.banner ? ":bangbang:" : "") ponerlo cuando haya banners
       const page = 15;
       const totalPages = Math.ceil(padoruTitles.length / page);
 
-      numberPage > totalPages
-        ? (numberPage = totalPages)
-        : (numberPage = numberPage);
+      if (numberPage > totalPages) numberPage = totalPages;
 
       let index = numberPage; // Inicializa el índice con numberPage
       let startIndex = (index - 1) * page;
@@ -122,13 +118,12 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setTitle(`${user.username}'s Padorupedia`)
           .setColor(profile.colors.padorupedia)
-          .setThumbnail(profile.favpadoru)
+          .setThumbnail(`https://nerobotfiles.s3.eu-west-3.amazonaws.com/uploads/1/1.png`)
           .setFooter({ text: `Page ${index}/${totalPages}` })
           .addFields(
             {
               name: "Symbols",
-              value:
-                ":no_entry_sign: = You can't roll this Padoru right now\n:bangbang: = Padoru rate up!!\n☆ = Upgraded Padoru",
+              value: leyenda,
             },
             {
               name: "\u200B",

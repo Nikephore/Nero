@@ -1,5 +1,3 @@
-const dbprofile = require("../../databaseFunctions/dbProfile");
-const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const dbguild = require("../../databaseFunctions/dbGuild");
 const pagination = require("../../functions/pagination");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");

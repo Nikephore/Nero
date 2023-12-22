@@ -16,7 +16,7 @@ module.exports = {
     .addIntegerOption((option) =>
       option.setName("numberrolls").setDescription("Number of Padorus to roll")
     ),
-  async execute(interaction, client) {
+  async execute(interaction) {
     try {
       // console.time("Claiming Padoru");
       const rarity = { 1: 0.39, 2: 0.3, 3: 0.2, 4: 0.1, 5: 0.01 };
@@ -60,12 +60,10 @@ module.exports = {
       const rolls = interaction.options.getInteger("numberrolls") ?? 1;
 
       let remaining = Duration(math.normalizeDate(2, 2) * 60000, {
-        units: ["h", "m"],
+        units: ["h", "m", "s"],
         maxDecimalPoints: 0,
         language: "en",
       });
-
-      
 
       if (isNaN(rolls)) {
         await interaction.editReply({
@@ -98,11 +96,11 @@ module.exports = {
       const raritiesArray = [];
       const luckyArray = [];
       let maxrar = 1;
-      for (i = 0; i < rolls; i++) {
+      for (let i = 0; i < rolls; i++) {
         let rollrar = parseInt(
           math.weightedRandom(profile.skills.gachamaster ? gachararity : rarity)
         );
-        rollrar > maxrar ? (maxrar = rollrar) : (maxrar = maxrar);
+        if (rollrar > maxrar) maxrar = rollrar;
         raritiesArray.push(rollrar);
         if (math.luckyStrike(profile.skills.problucky.prob)) {
           let rarityPlus = raritiesArray.slice(-1);
@@ -124,18 +122,9 @@ module.exports = {
       const newPadorusArray = [];
       const padoruIds = [];
       const embedsArray = [];
+      let addPadoru;
 
-      for (const padoru of selectedPadorus) {
-        await addPadoru(padoru, false);
-      }
-
-      if (luckyPadorus.length !== 0) {
-        for (const padoru of luckyPadorus) {
-          await addPadoru(padoru, true);
-        }
-      }
-
-      async function addPadoru(padoru, lucky) {
+      addPadoru = async function addPadoru(padoru, lucky) {
         // console.time("Add Padoru Function");
         let isNew = "";
         // Comprobamos si el usuario tiene el padoru o no
@@ -154,7 +143,7 @@ module.exports = {
 
         padoruIds.push(padoru.id);
 
-        let attack = 0;
+        let attackText;
         let life = 0;
         if (guildPadoru.owner.userId === interaction.user.id) {
           await dbguild.attack(interaction.guild, padoru.id, 0.5);
@@ -220,6 +209,16 @@ module.exports = {
 
         embedsArray.push(embed);
         // console.timeEnd("Add Padoru Function");
+      }
+
+      for (const padoru of selectedPadorus) {
+        await addPadoru(padoru, false);
+      }
+
+      if (luckyPadorus.length !== 0) {
+        for (const padoru of luckyPadorus) {
+          await addPadoru(padoru, true);
+        }
       }
 
       await dbprofile.addCoins(interaction.user, myCoins, interaction.guild);

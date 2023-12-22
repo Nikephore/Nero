@@ -9,6 +9,9 @@ module.exports.dailyCoins = async (user, padoruCoins, guild) => {
           "guilds.$.resources.padoruCoins": padoruCoins,
           "guilds.$.resources.tickets": 1,
         },
+        $set: {
+          "guilds.$.consumables.daily": false,
+        },
       },
       {
         upsert: true,
@@ -200,7 +203,6 @@ module.exports.getProfile = async (user, guild) => {
         { $push: { guilds: { id: guild.id } } },
         { new: true } // Return the modified document
       );
-
     }
 
     return data;
@@ -209,6 +211,39 @@ module.exports.getProfile = async (user, guild) => {
   }
 };
 
+module.exports.getGuildProfile = async (user, guild) => {
+  try {
+    let data = await profileSchema.findOne({ userId: user.id });
+
+    if (!data) {
+      // If the document doesn't exist, create a new one
+      data = await profileSchema.create({
+        userId: user.id,
+        username: user.username,
+        guilds: [{ id: guild.id }],
+      });
+    } else if (!data.guilds.some((g) => g.id === guild.id)) {
+      console.log("Guild doesn't exist");
+
+      // If the guild doesn't exist, push it to the guilds array
+      data = await profileSchema.findOneAndUpdate(
+        { userId: user.id },
+        { $push: { guilds: { id: guild.id } } },
+        { new: true } // Return the modified document
+      );
+    }
+
+    // Obtener el índice del perfil de la guild en el array
+    const guildIndex = data.guilds.findIndex((g) => g.id === guild.id);
+
+    // Obtener directamente el perfil de la guild usando el índice
+    const guildProfile = guildIndex !== -1 ? data.guilds[guildIndex] : null;
+
+    return guildProfile;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports.setFavPadoru = async (user, tn, guild) => {
   try {

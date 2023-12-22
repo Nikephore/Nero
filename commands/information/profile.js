@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const dbprofile = require("../../databaseFunctions/dbProfile");
 const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const filter = require("../../functions/filter");
+const axios = require('axios');
 
 module.exports = {
   category: "information",
@@ -18,7 +19,7 @@ module.exports = {
 
       let profile = await dbprofile.getProfile(user, interaction.guild);
       console.log("Antes de find", profile);
-      voteRolls = profile.voteRolls;
+      let voteRolls = profile.voteRolls;
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const plength = await dbpadoru.getLength();
 
@@ -31,15 +32,25 @@ module.exports = {
       }
 
       let luck = (1 / profile.skills.problucky.prob) * 100;
-      let syba = "- Locked · ❌";
+      let syba = "Locked · ❌";
       if (profile.skills.gachamaster) {
-        syba = "- Unlocked · ✅";
+        syba = "Unlocked · ✅";
+      }
+      const timestamp = new Date().getTime();
+
+      let exhibitor = `https://nerobotfiles.s3.eu-west-3.amazonaws.com/exhibitors/${user.id}.jpg?timestamp=${timestamp}`;
+      try {
+        await axios.head(exhibitor);
+      
+      } catch (error) {
+        exhibitor = `https://nerobotfiles.s3.eu-west-3.amazonaws.com/exhibitors/default.jpg?timestamp=${timestamp}`;
       }
 
       const message = new EmbedBuilder()
-        .setAuthor({ name: user.username })
+        .setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
         .setColor(profile.colors.profile)
-        .setThumbnail(profile.favpadoru)
+        .setThumbnail(`https://nerobotfiles.s3.eu-west-3.amazonaws.com/uploads/1/1.png`)
+        .setImage(exhibitor)
         .addFields(
           {
             name: "\u200B",
@@ -50,29 +61,44 @@ module.exports = {
             }/${plength}`,
           },
           {
-            name: "---**SKILLS**---",
-            value: `**Rolls LV ${
-              profile.skills.prolls.level
-            }**\n- Number of rolls · ${
-              profile.skills.prolls.numrolls
-            }\n**Lucky Strike LV ${
-              profile.skills.problucky.level
-            }**\n- Probability · ${luck.toFixed(2)}%\n**Daily Coins LV ${
-              profile.skills.dailycoins.level
-            }**\n- Number of coins · ${
-              profile.skills.dailycoins.dc
-            }\n**Attack LV ${profile.skills.attack.level}**\n- Damage · ${
-              profile.skills.attack.value
-            } :heart:\n**Gacha Master Mode**\n${syba}`,
+            name: "---------**SKILLS**---------",
+            value: 'Can be upgraded at the /shop',
           },
           {
-            name: "---**RESOURCES**---",
+            name: `**Rolls\nLV ${profile.skills.prolls.level}**`,
+            value: `**${profile.skills.prolls.numrolls}** Roll / 2H`,
+            inline: true,
+          },
+          {
+            name: `**Lucky Roll\nLV ${profile.skills.problucky.level}**`,
+            value: `Probability · **${luck.toFixed(2)}**%`,
+            inline: true,
+          },
+          {
+            name: `**Daily Coins\nLV ${profile.skills.dailycoins.level}**`,
+            value: `+ **${profile.skills.dailycoins.dc}** <:padorucoin2:1187212082735747143> / day\n+ **1** :tickets: / day`,
+            inline: true,
+          },
+          {
+            name: `**Attack\nLV ${profile.skills.attack.level}**`,
+            value: `Damage · **${profile.skills.attack.value}** :heart:`,
+            inline: true,
+          },
+          {
+            name: '**Gacha Master Mode**',
+            value: `${syba}`,
+            inline: true,
+          },
+          {
+            name: "---------**RESOURCES**---------",
             value: `**PadoruCoins** ${filter.nFormatter(
               profile.resources.padoruCoins
-            )} <:padorucoin2:1187212082735747143>\n**Tickets** · ${profile.resources.tickets} 🎟️`,
+            )} <:padorucoin2:1187212082735747143>\n**Tickets** · ${
+              profile.resources.tickets
+            } 🎟️`,
           },
           {
-            name: "---**CONSUMABLES**---",
+            name: "---------**CONSUMABLES**---------",
             value: `**VoteRolls** · ${filter.nFormatter(voteRolls)}`,
           }
         );

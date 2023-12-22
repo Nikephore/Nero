@@ -1,11 +1,9 @@
 const { REST, Routes } = require("discord.js");
-const { clientId, guildId } = require("./config.json");
-const { config } = require("dotenv/config");
+const { clientId } = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
 
 const commands = [];
-const adminCommands = [];
 
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);

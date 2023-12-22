@@ -1,5 +1,4 @@
 const { Events } = require("discord.js");
-const dbguild = require("../databaseFunctions/dbGuild");
 
 module.exports = {
   name: Events.ClientReady,
@@ -19,7 +18,7 @@ module.exports = {
     });
 
     // Usar para borrar comandos
-    //client.application.commands.set([]);
+    // client.application.commands.set([]);
 
     console.log("Conectando a mongo...");
     const mongo = require("../mongo");

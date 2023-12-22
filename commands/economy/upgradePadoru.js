@@ -1,7 +1,6 @@
 const dbprofile = require("../../databaseFunctions/dbProfile");
 const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const { SlashCommandBuilder } = require("discord.js");
-const math = require("../../functions/math");
 
 module.exports = {
   category: "economy",

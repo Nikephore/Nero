@@ -3,7 +3,7 @@ function randomNumberBetween(min, max) {
 }
 
 function luckyStrike(num) {
-  lucky = Math.floor(Math.random() * num);
+  let lucky = Math.floor(Math.random() * num);
 
   // Probabilidad de 1/num de que devuelva true
   if (lucky === 1) {
@@ -27,11 +27,11 @@ function weightedRandom(prob) {
 function rarityConvertAscii(rarity, add) {
   var ret = "";
 
-  for (var i = 0; i < rarity; i++) {
+  for (let i = 0; i < rarity; i++) {
     ret += "★";
   }
 
-  for (var i = 0; i < add; i++) {
+  for (let i = 0; i < add; i++) {
     ret += "☆";
   }
 
@@ -41,11 +41,11 @@ function rarityConvertAscii(rarity, add) {
 function rarityConvertEmoji(rarity, add) {
   var ret = "";
 
-  for (var i = 0; i < rarity; i++) {
+  for (let i = 0; i < rarity; i++) {
     ret += ":star:";
   }
 
-  for (var i = 0; i < add; i++) {
+  for (let i = 0; i < add; i++) {
     ret += ":star2:";
   }
 
@@ -55,7 +55,7 @@ function rarityConvertEmoji(rarity, add) {
 function lifeConvertEmoji(life) {
   var ret = "";
 
-  for (var i = 1; i <= life; i++) {
+  for (let i = 1; i <= life; i++) {
     ret += "❤️";
   }
 
@@ -84,10 +84,6 @@ function normalizeDate(step, add = 0) {
   then.setHours(hour, 0, 0, 0);
 
   return (then - now) / 6e4;
-}
-
-function getPeriods(date, format = (d) => d) {
-  return normalizeDate(date, 2, 2);
 }
 
 module.exports = {

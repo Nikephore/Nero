@@ -5,9 +5,6 @@ const {
   ActionRowBuilder,
   EmbedBuilder,
 } = require("discord.js");
-const { response } = require("express");
-const fs = require("fs");
-const path = require("path");
 
 module.exports = {
   category: "information",
@@ -107,7 +104,7 @@ module.exports = {
         collector.resetTimer();
       });
 
-      collector.on("end", async (i) => {
+      collector.on("end", async () => {
         const channel = interaction.channel;
         if (!channel) {
           return false; // El canal asociado a la interacción no existe
