@@ -76,7 +76,7 @@ module.exports = {
           },
           {
             name: `**Daily Coins\nLV ${profile.skills.dailycoins.level}**`,
-            value: `+ **${profile.skills.dailycoins.dc}** <:padorucoin2:1187212082735747143> / day\n+ **1** :tickets: / day`,
+            value: `+ **${profile.skills.dailycoins.dc}** <:padorucoin2:1187212082735747143> / day\n+ **${profile.skills.dailycoins.level}** :tickets: / day`,
             inline: true,
           },
           {

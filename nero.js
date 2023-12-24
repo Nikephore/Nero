@@ -4,19 +4,16 @@ const { Webhook } = require("@top-gg/sdk");
 const express = require("express");
 const app = express();
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
-const { config } = require("dotenv/config");
-const dbprofile = require("./databaseFunctions/dbProfile");
+const dbprofile = require("./src/databaseFunctions/dbProfile");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
 client.commands = new Collection();
-const foldersPath = path.join(__dirname, "commands");
+const foldersPath = path.join(__dirname, "src/commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
-const { token, topggtoken, auth } = require("./config.json");
-
-const wh = new Webhook(auth);
+const wh = new Webhook(process.env.AUTH);
 
 app.post(
   "/dblwebhook",
@@ -30,7 +27,7 @@ app.post(
 
 const { AutoPoster } = require("topgg-autoposter");
 
-AutoPoster(topggtoken, client).on("posted", () => {
+AutoPoster(process.env.TOPGGTOKEN, client).on("posted", () => {
   console.log("Posted stats to Top.gg!");
 });
 

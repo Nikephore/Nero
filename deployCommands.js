@@ -1,11 +1,10 @@
 const { REST, Routes } = require("discord.js");
-const { clientId } = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
 
 const commands = [];
 
-const foldersPath = path.join(__dirname, "commands");
+const foldersPath = path.join(__dirname, "src/commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -41,7 +40,7 @@ const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
 
     // Despliega los comandos que no son de administración de forma global
     const globalCommandsData = await rest.put(
-      Routes.applicationCommands(clientId),
+      Routes.applicationCommands(process.env.CLIENTID),
       { body: commands }
     );
 

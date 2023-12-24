@@ -18,7 +18,7 @@ module.exports = {
       );
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const coins = profile.skills.dailycoins.dc + (profile.padorupedia.length*profile.skills.dailycoins.level);
-
+      const tickets = profile.skills.dailycoins.level;
 
       if (!profile.consumables.daily) {
         let remaining = Duration((1440 + math.normalizeDate(24)) * 60000, {
@@ -30,10 +30,10 @@ module.exports = {
         return;
       }
 
-      await dbprofile.dailyCoins(interaction.user, coins, interaction.guild);
+      await dbprofile.dailyCoins(interaction.user, coins, tickets, interaction.guild);
 
       await interaction.reply(
-        `${interaction.user} obtained ${coins} <:padorucoin2:1187212082735747143> and 1 🎟️`
+        `${interaction.user} obtained ${coins} <:padorucoin2:1187212082735747143> and ${tickets} 🎟️`
       );
     } catch (err) {
       console.log("Error ocurred: ", err.message);

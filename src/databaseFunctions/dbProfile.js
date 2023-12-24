@@ -1,13 +1,13 @@
 const profileSchema = require("../schemas/profile");
 
-module.exports.dailyCoins = async (user, padoruCoins, guild) => {
+module.exports.dailyCoins = async (user, padoruCoins, tickets, guild) => {
   try {
     await profileSchema.findOneAndUpdate(
       { userId: user.id, "guilds.id": guild.id },
       {
         $inc: {
           "guilds.$.resources.padoruCoins": padoruCoins,
-          "guilds.$.resources.tickets": 1,
+          "guilds.$.resources.tickets": tickets,
         },
         $set: {
           "guilds.$.consumables.daily": false,

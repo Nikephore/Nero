@@ -1,4 +1,4 @@
-const dbseries = require("../databaseFunctions/dbSeries");
+const dbseries = require("../src/databaseFunctions/dbSeries");
 const mongo = require("../mongo");
 
 async function seriesFilter(interaction, padorupedia, mySeries, user) {
