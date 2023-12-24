@@ -12,7 +12,7 @@ module.exports.getSeries = async (name) => {
   }
 };
 
-module.exports.getAllSeries = async (name) => {
+module.exports.getAllSeries = async () => {
     try {
       const result = await seriesSchema.find({});
       return result;

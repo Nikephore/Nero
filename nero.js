@@ -3,6 +3,7 @@ const path = require("node:path");
 const { Webhook } = require("@top-gg/sdk");
 const express = require("express");
 const app = express();
+const { config } = require("dotenv/config");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const dbprofile = require("./src/databaseFunctions/dbProfile");
 
@@ -51,7 +52,7 @@ for (const folder of commandFolders) {
   }
 }
 
-const eventsPath = path.join(__dirname, "events");
+const eventsPath = path.join(__dirname, "src/events");
 const eventFiles = fs
   .readdirSync(eventsPath)
   .filter((file) => file.endsWith(".js"));

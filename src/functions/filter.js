@@ -1,5 +1,4 @@
-const dbseries = require("../src/databaseFunctions/dbSeries");
-const mongo = require("../mongo");
+const dbseries = require("../databaseFunctions/dbSeries");
 
 async function seriesFilter(interaction, padorupedia, mySeries, user) {
   const mongoSeries = await dbseries.getSeries(mySeries);
