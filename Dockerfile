@@ -11,7 +11,6 @@ FROM node:${NODE_VERSION}-alpine
 # Use production node environment by default.
 ENV NODE_ENV production
 
-
 WORKDIR /usr/app
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
@@ -33,9 +32,11 @@ RUN apk --update add \
 USER root
 
 # Copy the rest of the source files into the image.
-COPY ./ /usr/app
+COPY package*.json /usr/app/
 
 RUN npm install
+
+COPY ./ /usr/app
 
 USER node
 
