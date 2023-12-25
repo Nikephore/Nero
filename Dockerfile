@@ -12,7 +12,7 @@ FROM node:${NODE_VERSION}-alpine
 ENV NODE_ENV production
 
 
-WORKDIR /
+WORKDIR /usr/app
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
@@ -33,12 +33,9 @@ RUN apk --update add \
 USER root
 
 # Copy the rest of the source files into the image.
-COPY . .
+COPY ./ /usr/app
 
 RUN npm install
-
-# Copy the rest of the source files into the image.
-COPY . .
 
 USER node
 
