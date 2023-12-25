@@ -130,9 +130,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-package.json
-package-lock.json
-config.json
 .vscode
 commands/admin
 admin
