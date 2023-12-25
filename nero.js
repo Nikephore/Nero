@@ -32,17 +32,7 @@ AutoPoster(process.env.TOPGGTOKEN, client).on("posted", () => {
   console.log("Posted stats to Top.gg!");
 });
 
-app.get('/', (req, res) => {
-    const name = process.env.NAME || 'World';
-    res.send(`Hello ${name}!`);
-  });
-  
-  const port = parseInt(process.env.PORT) || 8080;
-  app.listen(port, () => {
-    console.log(`helloworld: listening on port ${port}`);
-  });
-
-app.listen(8080);
+app.listen(3000);
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
