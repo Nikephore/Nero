@@ -40,8 +40,5 @@ COPY ./ /usr/app
 
 USER node
 
-# Expose the port that the application listens on.
-EXPOSE 8080
-
 # Run the application.
 CMD node nero.js
