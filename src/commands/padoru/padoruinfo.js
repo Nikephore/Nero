@@ -3,7 +3,6 @@ const dbguild = require("../../databaseFunctions/dbGuild");
 const {
   SlashCommandBuilder,
   EmbedBuilder,
-  AttachmentBuilder,
 } = require("discord.js");
 const math = require("../../functions/math");
 const pagination = require("../../functions/pagination");
@@ -77,7 +76,7 @@ module.exports = {
       // Sort the padorupedia
       padorupedia = await filter.sortByFlag(sort, padorupedia);
 
-      for (i = 0; i < padorupedia.length; i++) {
+      for (let i = 0; i < padorupedia.length; i++) {
         let padoru = padorupedia[indexInArray];
         let padoruguild = guild.padorupedia.find((p) => p.id === padoru.id);
 

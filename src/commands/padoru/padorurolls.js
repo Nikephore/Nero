@@ -3,7 +3,6 @@ const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const dbguild = require("../../databaseFunctions/dbGuild");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const math = require("../../functions/math");
-const Duration = require("humanize-duration");
 const pagination = require("../../functions/pagination");
 
 module.exports = {
@@ -43,12 +42,6 @@ module.exports = {
 
       const rolls = interaction.options.getNumber("numberrolls") ?? 1;
 
-      let remaining = Duration(math.normalizeDate(2, 2) * 60000, {
-        units: ["h", "m"],
-        maxDecimalPoints: 0,
-        language: "en",
-      });
-
       // First of all we defer reply
       await interaction.deferReply();
 
@@ -77,7 +70,7 @@ module.exports = {
       }
 
       const raritiesArray = [];
-      for (i = 0; i < rolls; i++) {
+      for (let i = 0; i < rolls; i++) {
         raritiesArray.push(
           parseInt(
             math.weightedRandom(

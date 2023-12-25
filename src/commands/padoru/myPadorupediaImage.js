@@ -90,11 +90,8 @@ module.exports = {
       }
 
       let indexInArray = interaction.options.getNumber("index") ?? 1;
-      indexInArray < 1 ? (indexInArray = 1) : (indexInArray = indexInArray);
-      indexInArray > filteredPadorupedia.length
-        ? (indexInArray = filteredPadorupedia.length)
-        : (indexInArray = indexInArray);
-      console.log(indexInArray);
+      if (indexInArray < 1) indexInArray = 1;
+      if (indexInArray > filteredPadorupedia.length) indexInArray = filteredPadorupedia.length;
       indexInArray--;
 
       let myPadoruIndex = 0;
@@ -105,7 +102,7 @@ module.exports = {
         myPadoruIndex++;
       });
 
-      for (i = 0; i < filteredPadorupedia.length; i++) {
+      for (let i = 0; i < filteredPadorupedia.length; i++) {
         let padoru = filteredPadorupedia[indexInArray];
         let padoruguild = guild.padorupedia.find((p) => p.id === padoru.id);
         const embed = new EmbedBuilder()

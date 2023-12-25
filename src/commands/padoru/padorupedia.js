@@ -64,16 +64,13 @@ module.exports = {
           p.title +
           "\t" +
           math.rarityConvertAscii(p.rarity) +
-          (p.active ? "" : ":no_entry_sign:") +
-          (p.banner ? ":bangbang:" : "")
+          (p.active ? "" : ":no_entry_sign:")
       );
 
       const page = 15;
       const totalPages = Math.ceil(padoruTitles.length / page);
 
-      numberPage > totalPages
-        ? (numberPage = totalPages)
-        : (numberPage = numberPage);
+      if (numberPage > totalPages) numberPage = totalPages;
 
       let index = numberPage; // Inicializa el índice con numberPage
       let startIndex = (index - 1) * page;
@@ -89,8 +86,7 @@ module.exports = {
           .addFields(
             {
               name: "Symbols",
-              value:
-                ":no_entry_sign: = You can't roll this Padoru right now\n:bangbang: = Padoru rate up!!",
+              value: leyenda,
             },
             {
               name: "\u200B",

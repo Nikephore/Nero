@@ -18,7 +18,6 @@ module.exports = {
       const user = interaction.options.getUser("user") ?? interaction.user;
 
       let profile = await dbprofile.getProfile(user, interaction.guild);
-      console.log("Antes de find", profile);
       let voteRolls = profile.voteRolls;
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const plength = await dbpadoru.getLength();
