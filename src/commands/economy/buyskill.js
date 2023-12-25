@@ -8,7 +8,6 @@ const {
   ButtonStyle,
 } = require("discord.js");
 const filter = require("../../functions/filter");
-const math = require("../../functions/math");
 
 module.exports = {
   category: "economy",
@@ -155,7 +154,7 @@ module.exports = {
         }
       });
 
-      collector.on("end", async (i) => {});
+      collector.on("end", async () => {});
     } catch (err) {
       console.log("Error ocurred: ", err.message);
 
