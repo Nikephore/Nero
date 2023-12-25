@@ -3,7 +3,7 @@ const path = require("node:path");
 const { Webhook } = require("@top-gg/sdk");
 const express = require("express");
 const app = express();
-const { config } = require("dotenv/config");
+require('dotenv').config();
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const dbprofile = require("./src/databaseFunctions/dbProfile");
 

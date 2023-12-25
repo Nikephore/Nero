@@ -31,13 +31,15 @@ RUN apk --update add \
 
 # Run the application as a non-root user.
 USER root
-RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app/node_modules
-
 
 # Copy the rest of the source files into the image.
 COPY . .
 
 RUN npm install
+
+# Copy the rest of the source files into the image.
+COPY . .
+
 USER node
 
 # Expose the port that the application listens on.
