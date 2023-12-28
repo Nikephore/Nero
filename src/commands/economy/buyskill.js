@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const dbprofile = require("../../databaseFunctions/dbProfile");
 const {
   ActionRowBuilder,
@@ -35,7 +36,8 @@ module.exports = {
         interaction.guild
       );
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
-      const jsonString = fs.readFileSync("./json/skilltree.json");
+      const jsonPath = path.join(__dirname, "../../json/skilltree.json")
+      const jsonString = fs.readFileSync(jsonPath);
       const coins = profile.resources.padoruCoins;
       const mySkills = profile.skills;
       const skills = JSON.parse(jsonString);
