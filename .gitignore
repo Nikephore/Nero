@@ -135,3 +135,4 @@ commands/admin
 admin
 canary.js
 canaryDeployCommands.js
+deploycommands.md
