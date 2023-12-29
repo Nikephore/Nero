@@ -3,11 +3,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
-  Client,
-  GatewayIntentBits,
 } = require("discord.js");
-
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // must defer reply before calling this function
 async function buttonPages(interaction, pages, time = 60000) {
@@ -80,7 +76,7 @@ async function buttonPages(interaction, pages, time = 60000) {
       collector.resetTimer();
     });
 
-    collector.on("end", async (i) => {
+    collector.on("end", async () => {
       const channel = interaction.channel;
       if (!channel) {
         return false; // El canal asociado a la interacción no existe

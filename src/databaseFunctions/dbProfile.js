@@ -282,6 +282,26 @@ module.exports.addRoll = async (user, number, guild) => {
   }
 };
 
+module.exports.removeVoteRoll = async (user, number) => {
+  try {
+
+    await profileSchema.findOneAndUpdate(
+      { userId: user.id },
+      {
+        $inc: { voteRolls: number },
+      },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
+
+    return;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports.addVoteRoll = async (user, isWeekend) => {
   try {
     let number = isWeekend ? 2 : 1;

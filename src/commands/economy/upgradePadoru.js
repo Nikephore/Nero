@@ -36,15 +36,6 @@ module.exports = {
       const padoru = await dbpadoru.pick(id);
       console.log(padoru);
       const totalTickets = rarityValues[padoru.rarity];
-      if (totalTickets > profile.resources.tickets) {
-        await interaction.reply({
-          content: `You need **${
-            totalTickets - profile.resources.tickets
-          }** 🎟️ more to exchange **${padoru.title}**`,
-          ephemeral: true,
-        });
-        return;
-      }
 
       if (totalTickets < 0) {
         await interaction.reply({
@@ -67,6 +58,16 @@ module.exports = {
       if (profile.padorupedia[index].rarity === 1) {
         await interaction.reply({
           content: `This Padoru is already upgraded`,
+          ephemeral: true,
+        });
+        return;
+      }
+
+      if (totalTickets > profile.resources.tickets) {
+        await interaction.reply({
+          content: `You need **${
+            totalTickets - profile.resources.tickets
+          }** 🎟️ more to exchange **${padoru.title}**`,
           ephemeral: true,
         });
         return;

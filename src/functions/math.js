@@ -24,7 +24,7 @@ function weightedRandom(prob) {
   }
 }
 
-function rarityConvertAscii(rarity, add) {
+function rarityConvertAscii(rarity, add = 0) {
   var ret = "";
 
   for (let i = 0; i < rarity; i++) {
@@ -38,7 +38,7 @@ function rarityConvertAscii(rarity, add) {
   return ret;
 }
 
-function rarityConvertEmoji(rarity, add) {
+function rarityConvertEmoji(rarity, add = 0) {
   var ret = "";
 
   for (let i = 0; i < rarity; i++) {
@@ -56,11 +56,11 @@ function lifeConvertEmoji(life) {
   var ret = "";
 
   for (let i = 1; i <= life; i++) {
-    ret += "❤️";
+    ret += "<:Heart:1190323706552127699>";
   }
 
   if (life % 1 !== 0) {
-    ret += "💔";
+    ret += "<:Half_Heart:1190323541837615286>";
   }
 
   return ret;

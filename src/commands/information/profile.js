@@ -16,7 +16,10 @@ module.exports = {
   async execute(interaction) {
     try {
       const user = interaction.options.getUser("user") ?? interaction.user;
-
+      const { client } = interaction;
+      const shopCommand = client.commands.find(
+        (command) => command.data.name === "shop"
+      );
       let profile = await dbprofile.getProfile(user, interaction.guild);
       let voteRolls = profile.voteRolls;
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
@@ -61,7 +64,7 @@ module.exports = {
           },
           {
             name: "---------**SKILLS**---------",
-            value: 'Can be upgraded at the /shop',
+            value: `Can be upgraded at the </${shopCommand.data.name}:${shopCommand.id}>`,
           },
           {
             name: `**Rolls\nLV ${profile.skills.prolls.level}**`,
