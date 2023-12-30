@@ -6,6 +6,7 @@ const math = require("./math");
 const Duration = require("humanize-duration");
 const pagination = require("./pagination");
 const padorugif = require("./padorugif");
+const { rarityColorArray } = require ('../variables/colors');
 
 async function padoruRoll(interaction, isVote) {
   try {
@@ -15,15 +16,7 @@ async function padoruRoll(interaction, isVote) {
     const gachararity = { 1: 0.25, 2: 0.32, 3: 0.25, 4: 0.15, 5: 0.03 };
     const upgradeValues = [0, 5, 7, 10, 15, 25, 100];
     const coins = [50, 150, 450, 1500, 3000, 15000];
-    const colors = [
-      "",
-      "f54040",
-      "2cbf2e",
-      "2ea0d1",
-      "9f2ae8",
-      "f2e01d",
-      "ffffff",
-    ];
+    const timestamp = new Date().getTime();
     const { client } = interaction;
     const upgradeCommand = client.commands.find(
       (command) => command.data.name === "upgradepadoru"
@@ -208,8 +201,8 @@ async function padoruRoll(interaction, isVote) {
         })
         .setTitle(title)
         .setDescription(padoru.description)
-        .setImage(padoru.image)
-        .setColor(colors[padoru.rarity])
+        .setImage(`${padoru.image}?timestamp=${timestamp}`)
+        .setColor(rarityColorArray[padoru.rarity])
         .setFooter({
           text: `Roll number ${
             embedsArray.length + 1
@@ -218,7 +211,7 @@ async function padoruRoll(interaction, isVote) {
         .addFields(
           {
             name: "Artist",
-            value: `${padoru.artist}`,
+            value: `[Link to artist page](${padoru.artist})`,
           },
           {
             name: "Attack",

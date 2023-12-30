@@ -1,12 +1,10 @@
 const dbpadoru = require("../../databaseFunctions/dbPadoru");
 const dbguild = require("../../databaseFunctions/dbGuild");
-const {
-  SlashCommandBuilder,
-  EmbedBuilder,
-} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, } = require("discord.js");
 const math = require("../../functions/math");
 const pagination = require("../../functions/pagination");
 const filter = require("../../functions/filter");
+const { rarityColorArray } = require ('../../variables/colors');
 
 module.exports = {
   category: "padoru",
@@ -34,20 +32,12 @@ module.exports = {
 
   async execute(interaction) {
     try {
-      const colors = [
-        "",
-        "f54040",
-        "2cbf2e",
-        "2ea0d1",
-        "9f2ae8",
-        "f2e01d",
-        "ffffff",
-      ];
       const sort = interaction.options.getString("sort");
       let padorupedia = await dbpadoru.getAll(sort);
       const embedsArray = [];
       const guild = await dbguild.getGuild(interaction.guild);
       const mySeries = interaction.options.getString("series") ?? "";
+      const timestamp = new Date().getTime();
 
       // First of all we defer reply
       await interaction.deferReply();
@@ -84,17 +74,17 @@ module.exports = {
           .setAuthor({ name: `#${padoru.id} ${padoru.title}` })
           .setTitle(math.rarityConvertEmoji(padoru.rarity))
           .setDescription(padoru.description)
-          .setImage(padoru.image)
-          .setColor(colors[padoru.rarity])
+          .setImage(`${padoru.image}?timestamp=${timestamp}`)
+          .setColor(rarityColorArray[padoru.rarity])
           .setFooter({
             text: `Owner: ${
               padoruguild.owner.username
-            } | Life: ${math.lifeConvertEmoji(padoruguild.life)}`,
+            } | Life: ${math.lifeConvertEmojiFooter(padoruguild.life)}`,
           })
           .addFields(
             {
               name: "Artist",
-              value: `${padoru.artist}`,
+              value: `[Link to artist page](${padoru.artist})`,
             },
             {
               name: (padoru.banner ? "📈 Padoru rate up 📈" : " ").concat(

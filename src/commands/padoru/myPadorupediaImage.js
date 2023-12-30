@@ -52,6 +52,7 @@ module.exports = {
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const guild = await dbguild.getGuild(interaction.guild);
       const mySeries = interaction.options.getString("series") ?? "";
+      const timestamp = new Date().getTime();
 
       if (profile.padorupedia.length === 0) {
         await interaction.reply({
@@ -109,7 +110,7 @@ module.exports = {
           .setAuthor({ name: `#${padoru.id} ${padoru.title}` })
           .setTitle(math.rarityConvertEmoji(padoru.rarity, padoru.upgrade))
           .setDescription(padoru.description)
-          .setImage(padoru.image)
+          .setImage(`${padoru.image}?timestamp=${timestamp}`)
           .setColor(colors[padoru.rarity])
           .setFooter({
             text: `Padoru ${indexInArray + 1}/${filteredPadorupedia.length}`,
@@ -117,13 +118,13 @@ module.exports = {
           .addFields(
             {
               name: "Artist",
-              value: `${padoru.artist}`,
+              value: `[Link to artist page](${padoru.artist})`,
             },
             {
               name: `Times Claimed: ${padoru.timesClaimed}`,
               value: `Owner: ${
                 padoruguild.owner.username
-              } | Life: ${math.lifeConvertEmoji(padoruguild.life)}`,
+              } | Life: ${math.lifeConvertEmojiFooter(padoruguild.life)}`,
             }
           );
 

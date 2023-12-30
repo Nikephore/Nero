@@ -24,6 +24,16 @@ const profileSchema = mongoose.Schema({
           default:
             "https://cdn.discordapp.com/attachments/901798915425321000/901799120740704276/PADORUorg.png",
         },
+        pity: {
+          four: {
+            type: Number,
+            default: 0,
+          },
+          five: {
+            type: Number,
+            default: 0,
+          },
+        },
         resources: {
           padoruCoins: {
             type: Number,

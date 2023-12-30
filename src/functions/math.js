@@ -66,6 +66,20 @@ function lifeConvertEmoji(life) {
   return ret;
 }
 
+function lifeConvertEmojiFooter(life) {
+    var ret = "";
+  
+    for (let i = 1; i <= life; i++) {
+      ret += ":heart:";
+    }
+  
+    if (life % 1 !== 0) {
+      ret += ":broken_heart:";
+    }
+  
+    return ret;
+  }
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -92,6 +106,7 @@ module.exports = {
   rarityConvertAscii,
   rarityConvertEmoji,
   lifeConvertEmoji,
+  lifeConvertEmojiFooter,
   sleep,
   minsToMidnight,
   weightedRandom,

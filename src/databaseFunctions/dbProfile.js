@@ -398,6 +398,40 @@ module.exports.skillLvUp = async (user, skill, guild) => {
   }
 };
 
+module.exports.pityFour = async (user, guild) => {
+    const filter = { userId: user.id, "guilds.id": guild.id };
+
+    // devuelve el pity de 4E a 0
+    await profileSchema.findOneAndUpdate(filter, {
+        $inc: {"guilds.$.pity.five": 1},
+        $set: {"guilds.$.pity.four": 0}
+      });
+};
+
+module.exports.pityFive = async (user, guild) => {
+    const filter = { userId: user.id, "guilds.id": guild.id };
+
+    // devuelve el pity de 5E a 0
+    await profileSchema.findOneAndUpdate(filter, {
+        $inc: {"guilds.$.pity.four": 1},
+        $set: {"guilds.$.pity.five": 0}
+      });
+};
+
+module.exports.addPity = async (user, guild, four, five) => {
+    const filter = { userId: user.id, "guilds.id": guild.id };
+    await profileSchema.findOneAndUpdate(filter, {
+        $inc: {
+          "guilds.$.pity.five": five,
+          "guilds.$.pity.four": four,
+        },
+      });
+};
+
+module.exports.addToDocuments = async () => {
+    
+}
+
 module.exports.delete = async (user) => {
   try {
     await profileSchema.deleteOne({ userId: user.id });
