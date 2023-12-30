@@ -70,11 +70,11 @@ function lifeConvertEmojiFooter(life) {
     var ret = "";
   
     for (let i = 1; i <= life; i++) {
-      ret += ":heart:";
+      ret += "❤️";
     }
   
     if (life % 1 !== 0) {
-      ret += ":broken_heart:";
+      ret += "💔";
     }
   
     return ret;
