@@ -52,7 +52,7 @@ module.exports = {
       profile = profile.guilds.find((g) => g.id === interaction.guild.id);
       const guild = await dbguild.getGuild(interaction.guild);
       const mySeries = interaction.options.getString("series") ?? "";
-      const timestamp = new Date().getTime();
+      //const timestamp = new Date().getTime();
 
       if (profile.padorupedia.length === 0) {
         await interaction.reply({
@@ -110,7 +110,7 @@ module.exports = {
           .setAuthor({ name: `#${padoru.id} ${padoru.title}` })
           .setTitle(math.rarityConvertEmoji(padoru.rarity, padoru.upgrade))
           .setDescription(padoru.description)
-          .setImage(`${padoru.image}?timestamp=${timestamp}`)
+          .setImage(`${padoru.image}`)
           .setColor(colors[padoru.rarity])
           .setFooter({
             text: `Padoru ${indexInArray + 1}/${filteredPadorupedia.length}`,

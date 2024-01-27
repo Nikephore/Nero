@@ -16,7 +16,7 @@ async function padoruRoll(interaction, isVote) {
     const gachararity = { 1: 0.25, 2: 0.32, 3: 0.25, 4: 0.15, 5: 0.03 };
     const upgradeValues = [0, 5, 7, 10, 15, 25, 100];
     const coins = [50, 150, 450, 1500, 3000, 15000];
-    const timestamp = new Date().getTime();
+    //const timestamp = new Date().getTime();
     const { client } = interaction;
     const upgradeCommand = client.commands.find(
       (command) => command.data.name === "upgradepadoru"
@@ -201,7 +201,7 @@ async function padoruRoll(interaction, isVote) {
         })
         .setTitle(title)
         .setDescription(padoru.description)
-        .setImage(`${padoru.image}?timestamp=${timestamp}`)
+        .setImage(`${padoru.image}`)
         .setColor(rarityColorArray[padoru.rarity])
         .setFooter({
           text: `Roll number ${

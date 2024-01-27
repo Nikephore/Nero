@@ -37,7 +37,7 @@ module.exports = {
       const embedsArray = [];
       const guild = await dbguild.getGuild(interaction.guild);
       const mySeries = interaction.options.getString("series") ?? "";
-      const timestamp = new Date().getTime();
+      //const timestamp = new Date().getTime();
 
       // First of all we defer reply
       await interaction.deferReply();
@@ -74,7 +74,7 @@ module.exports = {
           .setAuthor({ name: `#${padoru.id} ${padoru.title}` })
           .setTitle(math.rarityConvertEmoji(padoru.rarity))
           .setDescription(padoru.description)
-          .setImage(`${padoru.image}?timestamp=${timestamp}`)
+          .setImage(`${padoru.image}`)
           .setColor(rarityColorArray[padoru.rarity])
           .setFooter({
             text: `Owner: ${
